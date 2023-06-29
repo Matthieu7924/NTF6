@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
+use App\Entity\Trait\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\ProductRepository;
@@ -14,6 +15,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Product
 {
     use CreatedAtTrait;
+    use SlugTrait;
+
     
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -47,6 +50,7 @@ class Product
         $this->images = new ArrayCollection();
         $this->ordersDetails = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+
     }
 
     public function getId(): ?int
