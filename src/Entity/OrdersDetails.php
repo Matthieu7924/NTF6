@@ -6,6 +6,7 @@ use App\Repository\OrdersDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrdersDetailsRepository::class)]
+#[ORM\Table(name: 'ordersDetails')]
 class OrdersDetails
 {
     #[ORM\Column]
