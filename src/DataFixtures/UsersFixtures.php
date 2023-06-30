@@ -31,15 +31,25 @@ class UsersFixtures extends Fixture
         );
         $admin->setRoles(['ROLE_ADMIN']);
 
-
         $manager->persist($admin);
 
         $faker = Faker\Factory::create('fr_FR');
 
-for($usr =1; $usr <=5; $usr++ )
-{
-    
-}
+        for($usr=1;$usr<5;$usr++)
+        {
+            $user = new User();
+            $user->setEmail($faker->email);
+            $user->setLastname($faker->Name);
+            $user->setFirstName($faker->firstName);
+            $user->setAddress($faker->streetAddress);
+            $user->setZipcode(str_replace(' ' , '',$faker->postcode));
+            $user->setCity($faker->city);
+            $user->setPassword(
+                $this->passwordEncoder->hashPassword($user, 'secret')
+            );
+            $manager->persist($user);
+        }
+        
         $manager->flush();
     }
 }
