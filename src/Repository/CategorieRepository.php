@@ -63,4 +63,13 @@ class CategorieRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findOneBySlug(string $slug): ?Categorie
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
