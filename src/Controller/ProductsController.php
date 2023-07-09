@@ -31,8 +31,7 @@ class ProductsController extends AbstractController
     {
         $product = $productRepository->findOneBy(['slug' => $slug]);
 
-        dd($product);
-        return $this->render('products/details.html.twig');
+        return $this->render('products/details.html.twig',compact('product'));
     }
 
 
